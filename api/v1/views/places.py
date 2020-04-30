@@ -18,7 +18,7 @@ def crud_places(city_id=None, place_id=None):
         'class': 'Place',  # Name class
         'f_id': city_id,  # foreign key value
         'table': 'places',  # table name for GET request
-        'exists': ['name'],  # attr that must exist
+        'exists': ['name', 'user_id'],  # attr that must exist
         'r_class': 'City',  # class with which it's related
         'r_field': 'city_id',  # relation field
     }
