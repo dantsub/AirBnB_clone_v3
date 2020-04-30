@@ -14,7 +14,7 @@ app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.register_blueprint(app_views)
 
-cors = CORS(app, resource={'/*': {'origin': '0.0.0.0'}})
+cors = CORS(app, resource={'*': {'origins': '0.0.0.0'}})
 
 
 @app.teardown_appcontext
@@ -27,6 +27,7 @@ def close(self):
 def page_not_found(error):
     """ Page not found error 404 """
     return jsonify({"error": "Not found"}), 404
+
 
 if __name__ == '__main__':
     app.run(host=host, port=port, threaded=True)
