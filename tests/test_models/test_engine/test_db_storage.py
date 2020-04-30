@@ -18,6 +18,7 @@ import json
 import os
 import pep8
 import unittest
+import MySQLdb
 DBStorage = db_storage.DBStorage
 storage = DBStorage()
 classes = {"Amenity": Amenity, "City": City, "Place": Place,
@@ -71,6 +72,16 @@ test_db_storage.py'])
 
 class TestFileStorage(unittest.TestCase):
     """Test the FileStorage class"""
+    @classmethod
+    def setUp(cls):
+        """Set up MySQLdb"""
+        storage.reload()
+
+    @classmethod
+    def tearDown(cls):
+        """Tear down storage"""
+        storage.close()
+
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_all_returns_dict(self):
         """Test that all returns a dictionaty"""
